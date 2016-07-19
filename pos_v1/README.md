@@ -12,7 +12,7 @@ POS收银机 版本：v1
 商店里进行购物结算时会使用收银机（POS）系统，这台收银机会在结算时根据客户的购物车（Cart）中的商品（Item）和商店正在进行的优惠活动（Promotion）进行结算和打印收据（Receipt）。
 
 已知该商店正在对部分商品进行“买二赠一”的优惠活动。
-
+https://github.com/twa-camp-2016/pos.githttps://github.com/twa-camp-2016/pos.git
 我们需要实现一个名为`printReceipt`函数，该函数能够将指定格式的数据作为参数输入，然后在浏览器的控制台中输出收据的文本。
 
 输入格式（样例）：

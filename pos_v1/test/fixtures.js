@@ -3,13 +3,13 @@
 function loadAllItems() {
   return [
     {
-      barcode: 'ITEM000000',
+      barcode: 'ITEM000000',//
       name: '可口可乐',
       unit: '瓶',
       price: 3.00
     },
     {
-      barcode: 'ITEM000001',
+      barcode: 'ITEM000001',//
       name: '雪碧',
       unit: '瓶',
       price: 3.00
@@ -33,7 +33,7 @@ function loadAllItems() {
       price: 2.00
     },
     {
-      barcode: 'ITEM000005',
+      barcode: 'ITEM000005',//
       name: '方便面',
       unit: '袋',
       price: 4.50
