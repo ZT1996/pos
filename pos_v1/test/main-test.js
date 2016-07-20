@@ -74,7 +74,7 @@ describe('pos', () => {
     let allItems = loadAllItems();
     let cartItems = countItems(allItems, inputs);
     let promotions = loadPromotions();
-    let newCartItems = countPromotions(cartItems,promotions);
+    let newCartItems = countPromotions(cartItems, promotions);
 
     const expectText = [
       {
@@ -88,7 +88,7 @@ describe('pos', () => {
           count: 5
 
         },
-        originSubtotal: 15.00,
+        subtotal: 12.00,
         save: 3.00
 
       },
@@ -102,7 +102,7 @@ describe('pos', () => {
           },
           count: 2
         },
-        originSubtotal: 30.00,
+        subtotal: 30.00,
         save: 0.00
 
       },
@@ -117,7 +117,7 @@ describe('pos', () => {
           },
           count: 3
         },
-        originSubtotal: 13.5,
+        subtotal: 9.00,
         save: 4.50
 
       }
@@ -125,13 +125,28 @@ describe('pos', () => {
 
     expect(newCartItems).toEqual(expectText);
   });
-  
-  it("should ouput correct receipt",() => {
+  it("should output correct total and saves", () => {
     let allItems = loadAllItems();
     let cartItems = countItems(allItems, inputs);
     let promotions = loadPromotions();
-    let newCartItems = countPromotions(cartItems,promotions);
-    let receipt = cartList(newCartItems);
+    let newCartItems = countPromotions(cartItems, promotions);
+    let {total, saves} = calculatePrice(newCartItems);
+
+    const expectText = {
+      total: 51.00,
+      saves: 7.50
+    };
+
+    expect({total, saves}).toEqual(expectText);
+  });
+  it("should output correct receipt", () => {
+
+    let allItems = loadAllItems();
+    let cartItems = countItems(allItems, inputs);
+    let promotions = loadPromotions();
+    let newCartItems = countPromotions(cartItems, promotions);
+    let {total, saves} = calculatePrice(newCartItems);
+    let receipt = cartList(newCartItems, {total, saves});
 
     const expectText = `***<没钱赚商店>收据***
 名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)
@@ -141,6 +156,8 @@ describe('pos', () => {
 总计：51.00(元)
 节省：7.50(元)
 **********************`;
+
+    expect(receipt).toEqual(expectText);
   });
 });
 
